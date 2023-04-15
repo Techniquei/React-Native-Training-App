@@ -5,7 +5,7 @@ import { CurrentTrainingsCard } from "../CurrentTrainingsCard"
 import { ExercisesList } from "../ExercisesList"
 import { Props } from "../../../App"
 const ids = [1, 2, 3, 4]
-export function Favorites({navigation}:Props) {
+export function Favorites({navigation}:{navigation : Props['navigation']}) {
   return (
     <TabView.Item style={{ width: "100%" }}>
       <ScrollView contentContainerStyle={{paddingVertical: 10}}>

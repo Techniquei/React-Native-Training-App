@@ -5,15 +5,16 @@ import { View } from "react-native"
 import { CurrentTraining } from "../components/tabViews/CurrentTraining"
 import { Favorites } from "../components/tabViews/Favorites"
 import { History } from "../components/tabViews/History"
+import { Props } from "../../App"
 
-export function HomePage({navigation}) {
+export function HomePage({navigation} : {navigation: Props['navigation']}) {
   const [index, setIndex] = React.useState(0)
   return (
     <>
       <TabView value={index} onChange={setIndex} animationType="spring">
         <CurrentTraining navigation={navigation} />
         <Favorites navigation={navigation} />
-        <History />
+        <History navigation={navigation} />
       </TabView>
       <Tab
         value={index}

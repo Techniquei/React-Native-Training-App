@@ -23,16 +23,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomePage}
-        />
-        <Stack.Screen
-          name="Detailed"
-          component={DetailedExercise}
-          options={{ title: "Detailed" }}
-        />
-        <Stack.Screen
+      <Stack.Screen
           name="Authorization"
           component={Authorization}
           options={{ title: "Authorization" }}
@@ -41,6 +32,15 @@ function App() {
           name="Questions"
           component={QuestionPage}
           options={{ title: "Questions" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+        />
+        <Stack.Screen
+          name="Detailed"
+          component={DetailedExercise}
+          options={{ title: "Detailed" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
