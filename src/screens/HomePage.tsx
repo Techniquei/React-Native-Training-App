@@ -1,22 +1,19 @@
 import { Button } from "@rneui/base"
-import { Tab, TabView } from "@rneui/themed"
+import { SpeedDial, Tab, TabView, Text } from "@rneui/themed"
 import React, { useState } from "react"
-import { Text, View } from "react-native"
+import { View } from "react-native"
+import { CurrentTraining } from "../components/tabViews/CurrentTraining"
+import { Favorites } from "../components/tabViews/Favorites"
+import { History } from "../components/tabViews/History"
 
-export function HomePage() {
+export function HomePage({navigation}) {
   const [index, setIndex] = React.useState(0)
   return (
     <>
       <TabView value={index} onChange={setIndex} animationType="spring">
-        <TabView.Item style={{ backgroundColor: "red", width: "100%" }}>
-          <Text h1>Recent</Text>
-        </TabView.Item>
-        <TabView.Item style={{ backgroundColor: "blue", width: "100%" }}>
-          <Text h1>Favorite</Text>
-        </TabView.Item>
-        <TabView.Item style={{ backgroundColor: "green", width: "100%" }}>
-          <Text h1>Cart</Text>
-        </TabView.Item>
+        <CurrentTraining navigation={navigation} />
+        <Favorites navigation={navigation} />
+        <History />
       </TabView>
       <Tab
         value={index}
@@ -28,19 +25,19 @@ export function HomePage() {
         variant="primary"
       >
         <Tab.Item
-          title="Recent"
+          title="Current"
           titleStyle={{ fontSize: 12 }}
-          icon={{ name: "timer", type: "ionicon", color: "white" }}
+          icon={{ name: "barbell", type: "ionicon", color: "white" }}
         />
         <Tab.Item
-          title="favorite"
+          title="Favorite"
           titleStyle={{ fontSize: 12 }}
           icon={{ name: "heart", type: "ionicon", color: "white" }}
         />
         <Tab.Item
-          title="cart"
+          title="History"
           titleStyle={{ fontSize: 12 }}
-          icon={{ name: "cart", type: "ionicon", color: "white" }}
+          icon={{ name: "bar-chart", type: "ionicon", color: "white" }}
         />
       </Tab>
     </>

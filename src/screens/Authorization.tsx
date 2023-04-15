@@ -4,7 +4,7 @@ import { Formik, useFormik } from "formik"
 import React, { useState } from "react"
 import { TextInput, View } from "react-native"
 import * as yup from "yup"
-import { SignUpDialog } from "./components/SignUpDialog"
+import { SignUpDialog } from "../components/SignUpDialog"
 
 const loginValidationSchema = yup.object().shape({
   login: yup.string().required("Login is required"),
