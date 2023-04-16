@@ -2,6 +2,8 @@ import { Icon, Image, ListItem, Text } from "@rneui/themed";
 import { View } from "react-native";
 import {useState} from 'react'
 import { Props } from "../../App";
+import {Ionicons, MaterialCommunityIcons
+} from '@expo/vector-icons';
 
 export function HistoryListItem({navigation}:{navigation:Props['navigation']}){
     const [expanded, setExpanded] = useState(false);
@@ -13,14 +15,14 @@ export function HistoryListItem({navigation}:{navigation:Props['navigation']}){
               <Text style={{ fontSize: 20, fontWeight: "500" }}>Normal</Text>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text h4>5</Text>
-                <Icon name="star" color="#ffc400" size={25} />
+                <Icon name="star" type="ionicon" color="#ffc400" size={25} />
               </View>
             </View>
           </View>
         }
         isExpanded = {expanded}
         onPress={()=>setExpanded(!expanded)}
-        
+        icon={<Icon name="chevron-down" type="ionicon" size={35} />}
 
 
 

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { StatusBar, Text, View } from "react-native"
 import { Button } from "@rneui/base"
 import { NavigationContainer } from "@react-navigation/native"
 
@@ -21,6 +21,8 @@ export type Props = NativeStackScreenProps<RootStackParamList>;
 
 function App() {
   return (
+    <>
+    <StatusBar barStyle="light-content" backgroundColor = "#019eb3" />
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen
@@ -44,6 +46,8 @@ function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </>
+    
   )
 }
 export default App

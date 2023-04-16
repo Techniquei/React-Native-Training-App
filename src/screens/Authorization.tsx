@@ -1,10 +1,11 @@
 import { Button } from "@rneui/base"
-import { Input, Text } from "@rneui/themed"
+import { Icon, Input, Text } from "@rneui/themed"
 import { Formik, useFormik } from "formik"
 import React, { useState } from "react"
 import { TextInput, View } from "react-native"
 import * as yup from "yup"
 import { SignUpDialog } from "../components/SignUpDialog"
+import {Ionicons} from '@expo/vector-icons';
 
 const loginValidationSchema = yup.object().shape({
   login: yup.string().required("Login is required"),
@@ -65,6 +66,7 @@ export function Authorization({ navigation }) {
         >
           Sign Up
         </Button>
+        <Ionicons name='md-checkmark-circle' size={32} color='green' style={{opacity: 0}} />     
       </View>
       <SignUpDialog visible={dialogVisible} setVisible={setDialogVisible} />
     </View>
