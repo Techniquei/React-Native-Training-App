@@ -46,6 +46,7 @@ export function Authorization({ navigation }) {
                 placeholder="Password"
                 onChangeText={handleChange("password")}
                 value={values.password}
+                secureTextEntry
               />
               {(errors.password && touched.password) && 
                 <Text style={{paddingHorizontal: 10, color: 'red'}}>{errors.password}</Text>
