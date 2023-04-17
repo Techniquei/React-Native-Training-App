@@ -35,7 +35,7 @@ export function CurrentTraining({
             <Text h3 style={{ textAlign: "center", marginTop: 15 }}>
               Current Training
             </Text>
-            <ExercisesList ids={ids} navigation={navigation} />
+            <ExercisesList ids={ids} navigation={navigation} parent="current" />
             <Button
               buttonStyle={{
                 margin: 15,

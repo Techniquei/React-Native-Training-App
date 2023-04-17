@@ -81,22 +81,18 @@ export function QuestionPage({ navigation } : Props) {
         </Text>
         <ButtonGroup
           buttons={[
-            <Icon name="leaf" type="ionicon" color="lawngreen" size={40} />,
-            <Icon name="heart" type="ionicon" color="salmon" size={40} />,
-            <Icon name="barbell" type="ionicon" size={40} />,
+            <Icon name="leaf" type="ionicon" color="lawngreen" size={80} />,
+            <Icon name="heart" type="ionicon" color="salmon" size={80} />,
+            <Icon name="barbell" type="ionicon" size={80} />,
           ]}
           selectedIndex={goalState}
           onPress={(value) => {
             setGoalState(value)
           }}
-          textStyle={{ padding: 10 }}
-          containerStyle={{
-            height: 60,
-            width: "100%",
-            maxWidth: 250,
-            alignSelf: "center",
-          }}
           selectedButtonStyle={{ backgroundColor: "grey" }}
+          buttonStyle={{width: 90, height: 90}}
+          buttonContainerStyle={{width: 90, height: 90}}
+          containerStyle={{width: 270, height: 90}}
         />
       </View>
       {goalState == 2 ? (
@@ -108,7 +104,7 @@ export function QuestionPage({ navigation } : Props) {
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
-              gap: 5,
+              gap: 0,
               justifyContent: "center",
               maxWidth: 287,
             }}

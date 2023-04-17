@@ -22,7 +22,7 @@ export type Props = NativeStackScreenProps<RootStackParamList>;
 function App() {
   return (
     <>
-    <StatusBar barStyle="light-content" backgroundColor = "#019eb3" />
+    <StatusBar barStyle="dark-content" backgroundColor = "white" />
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen

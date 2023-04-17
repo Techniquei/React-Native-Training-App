@@ -44,22 +44,18 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
 
             <ButtonGroup
               buttons={[
-                <Icon name="leaf" type="ionicon" color="lawngreen" size={40} />,
-                <Icon name="heart" type="ionicon" color="salmon" size={40} />,
-                <Icon name="barbell" type="ionicon" size={40} />,
+                <Icon name="leaf" type="ionicon" color="lawngreen" size={80} />,
+                <Icon name="heart" type="ionicon" color="salmon" size={80} />,
+                <Icon name="barbell" type="ionicon" size={80} />,
               ]}
               selectedIndex={goalState}
               onPress={(value) => {
                 setGoalState(value)
               }}
-              textStyle={{ padding: 10 }}
-              containerStyle={{
-                height: 60,
-                width: "100%",
-                maxWidth: 250,
-                alignSelf: "center",
-              }}
               selectedButtonStyle={{ backgroundColor: "grey" }}
+              buttonStyle={{ width: 90, height: 90 }}
+              buttonContainerStyle={{ width: 90, height: 90 }}
+              containerStyle={{ width: 270, height: 90 }}
             />
           </View>
           {goalState == 2 ? (
@@ -73,7 +69,6 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
                 style={{
                   flexDirection: "row",
                   flexWrap: "wrap",
-                  gap: 5,
                   justifyContent: "center",
                   maxWidth: 287,
                 }}
@@ -150,9 +145,12 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
             title="Log Out"
             color="error"
             onPress={() => {
-              console.log('navigation')
-              navigation.addListener('beforeRemove', (e)=>navigation.dispatch(e.data.action))
-              navigation.navigate('Authorization')}}
+              console.log("navigation")
+              navigation.addListener("beforeRemove", (e) =>
+                navigation.dispatch(e.data.action)
+              )
+              navigation.navigate("Authorization")
+            }}
           />
         </Dialog>
       </ScrollView>

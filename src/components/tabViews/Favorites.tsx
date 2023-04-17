@@ -13,7 +13,7 @@ export function Favorites({navigation}:{navigation : Props['navigation']}) {
           <Text h3 style={{ textAlign: "center", marginTop: 15 }}>
             Favorites
           </Text>
-          <ExercisesList navigation={navigation} ids={ids} />
+          <ExercisesList navigation={navigation} ids={ids} parent="favorites" />
         </>
       </ScrollView>
     </TabView.Item>
