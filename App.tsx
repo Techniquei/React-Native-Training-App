@@ -38,6 +38,7 @@ function App() {
         <Stack.Screen
           name="Home"
           component={HomePage}
+          options={{headerShown: false, gestureEnabled: false}}
         />
         <Stack.Screen
           name="Detailed"

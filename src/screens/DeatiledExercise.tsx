@@ -22,7 +22,7 @@ export function DetailedExercise() {
   }, [])
   return (
     <View style={{height: '100%', backgroundColor: 'white', flex: 1}}>
-      <ScrollView style={{ display: "flex"}} contentContainerStyle={{padding: 10}}>
+      <ScrollView style={{ display: "flex"}} contentContainerStyle={{padding:15}}>
         <Text h4 style={{ textAlign: "center", marginBottom: 10 }}>
           Подтягивания на перекладине
         </Text>
@@ -35,7 +35,7 @@ export function DetailedExercise() {
           Вариантов подтягиваний очень много, существует целый вид спорта —
           воркаут.
         </Text>
-        <Text h4 style={{ textAlign: "center", marginBottom: 10 }}>
+        <Text h4 style={{ textAlign: "center", marginVertical: 10 }}>
           Техника выполнения
         </Text>
 
@@ -72,6 +72,7 @@ export function DetailedExercise() {
         <Button
           buttonStyle={{
             backgroundColor: liked ? "red" : "grey",
+            height: 62
           }}
           title={liked ? "Liked" : "Add to favorites"}
           icon={{ name: "heart", type: "ionicon", color: "white", size: 30 }}

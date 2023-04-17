@@ -10,7 +10,7 @@ export function CurrentTrainingsCard({ id }: { id: number }) {
     <Card containerStyle={{ paddingLeft: 0, borderRadius: 15 }}>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <Image
-          style={{ width: 150, height: 150 }}
+          style={{flex: 1, width: 120, height: 120, resizeMode: 'contain', flexShrink: 2}}
           source={{
             uri: "https://i0.wp.com/trener59.ru/wp-content/uploads/2019/12/podtjagivanija-na-perekladine-foto.jpg?w=160&ssl=1",
           }}

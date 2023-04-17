@@ -26,7 +26,7 @@ export function Authorization({ navigation }) {
         alignItems: "center",
       }}
     >
-      <View style={{ width: "100%", maxWidth: 400 }}>
+      <View style={{ width: "100%", maxWidth: 300}}>
         <Formik
           initialValues={{ login: "", password: "" }}
           onSubmit={loginHandler}

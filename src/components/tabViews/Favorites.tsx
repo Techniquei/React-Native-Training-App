@@ -8,7 +8,7 @@ const ids = [1, 2, 3, 4]
 export function Favorites({navigation}:{navigation : Props['navigation']}) {
   return (
     <TabView.Item style={{ width: "100%" }}>
-      <ScrollView contentContainerStyle={{paddingVertical: 10}}>
+      <ScrollView>
         <>
           <Text h3 style={{ textAlign: "center", marginTop: 15 }}>
             Favorites

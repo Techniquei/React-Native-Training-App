@@ -1,6 +1,6 @@
 import { Button } from "@rneui/base"
 import { SpeedDial, Tab, TabView, Text } from "@rneui/themed"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { View } from "react-native"
 import { CurrentTraining } from "../components/tabViews/CurrentTraining"
 import { Favorites } from "../components/tabViews/Favorites"
@@ -8,7 +8,12 @@ import { History } from "../components/tabViews/History"
 import { Props } from "../../App"
 
 export function HomePage({navigation} : {navigation: Props['navigation']}) {
-  const [index, setIndex] = React.useState(0)
+  const [index, setIndex] = useState(0)
+  useEffect(()=>{
+    navigation.addListener('beforeRemove', (e)=>{
+      e.preventDefault()
+    })
+  })
   return (
     <>
       <TabView value={index} onChange={setIndex} animationType="spring">
@@ -36,9 +41,9 @@ export function HomePage({navigation} : {navigation: Props['navigation']}) {
           icon={{ name: "heart", type: "ionicon", color: "white" }}
         />
         <Tab.Item
-          title="History"
+          title="Profile"
           titleStyle={{ fontSize: 12 }}
-          icon={{ name: "bar-chart", type: "ionicon", color: "white" }}
+          icon={{ name: "person", type: "ionicon", color: "white" }}
         />
       </Tab>
     </>

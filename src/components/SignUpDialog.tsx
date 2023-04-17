@@ -44,7 +44,7 @@ export function SignUpDialog({
     )
   }
   return (
-    <Overlay isVisible={visible} onBackdropPress={() => setVisible(!visible)} fullScreen overlayStyle={{display: 'flex', justifyContent: 'center'}}>
+    <Overlay isVisible={visible} onBackdropPress={() => setVisible(!visible)} fullScreen overlayStyle={{display: 'flex', justifyContent: 'center', padding: 15}}>
       <Dialog.Title title="Sign Up" />
       <View
         style={{
@@ -77,6 +77,7 @@ export function SignUpDialog({
                 placeholder="Age"
                 onChangeText={props.handleChange("age")}
                 value={props.values.age}
+                keyboardType="numeric"
               />
               <Input
                 placeholder="Weight"
@@ -88,7 +89,6 @@ export function SignUpDialog({
                 style={{
                   textAlign: "center",
                   fontSize: 20,
-                  marginVertical: 10,
                 }}
               >
                 Gender
@@ -108,11 +108,14 @@ export function SignUpDialog({
                 }}
                 title={"CONFIRM"}
                 type="solid"
+                buttonStyle={{marginHorizontal: 10, marginTop:10}}
               />
               <Button
                 onPress={() => setVisible(!visible)}
                 title={"CANCEL"}
                 type="clear"
+                buttonStyle={{marginHorizontal: 10}}
+                titleStyle={{color: 'red'}}
               />
             </View>
           )}

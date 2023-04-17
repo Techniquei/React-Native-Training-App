@@ -7,7 +7,7 @@ export function ExercisesList({ids, navigation} : {ids : number[], navigation:Pr
       <>
         {ids.map((id, index) => (
             <TouchableOpacity onPress={()=>navigation.navigate('Detailed')} style={{borderRadius: 30}}>
-              <CurrentTrainingsCard id={index + 1} key={index} />
+              <CurrentTrainingsCard id={index + 1} key={index+id} />
             </TouchableOpacity>
           ))}
       </>
