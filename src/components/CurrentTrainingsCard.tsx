@@ -1,6 +1,5 @@
-import { Card, Image, Text, AirbnbRating, Button } from "@rneui/themed"
+import { Image, Card, Text, AirbnbRating, Button } from "@rneui/themed"
 import { View } from "react-native"
-
 const muscleGroup = "Back"
 const muscleImage = require("../img/muscle.png")
 const energyImage = require("../img/energy.png")

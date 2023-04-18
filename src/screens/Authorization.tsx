@@ -4,19 +4,17 @@ import { Formik, useFormik } from "formik"
 import React, { useState } from "react"
 import { TextInput, View } from "react-native"
 import * as yup from "yup"
-import { SignUpDialog } from "../components/SignUpDialog"
 import {Ionicons} from '@expo/vector-icons';
+import { Props } from "../../App"
 
 const loginValidationSchema = yup.object().shape({
   login: yup.string().required("Login is required"),
   password: yup.string().required("Password is required"),
 })
 
-export function Authorization({ navigation }) {
-  const [dialogVisible, setDialogVisible]  = useState(false)
+export function Authorization({ navigation } : Props) {
   function loginHandler(values: any) {
-    console.log(values)
-    navigation.navigate("Questions")
+    navigation.navigate("Home")
   }
   return (
     <View
@@ -62,14 +60,13 @@ export function Authorization({ navigation }) {
         </Formik>
         <Button
           type="clear"
-          onPress={() => setDialogVisible(true)}
+          onPress={() => navigation.navigate("SignUp")}
           style={{paddingHorizontal: 10}}
         >
           Sign Up
         </Button>
         <Ionicons name='md-checkmark-circle' size={32} color='green' style={{opacity: 0}} />     
       </View>
-      <SignUpDialog visible={dialogVisible} setVisible={setDialogVisible} />
     </View>
   )
 }

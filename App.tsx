@@ -9,6 +9,7 @@ import { Authorization } from "./src/screens/Authorization"
 import { QuestionPage } from "./src/screens/QuestionPage"
 import { DetailedExercise } from "./src/screens/DeatiledExercise"
 import { ExercisesList } from "./src/components/ExercisesList"
+import { Registration } from "./src/screens/Registration"
 
 const Stack = createNativeStackNavigator()
 type RootStackParamList = {
@@ -16,6 +17,7 @@ type RootStackParamList = {
   Detailed: undefined;
   Authorization: undefined;
   Questions: undefined;
+  SignUp:  undefined
 }
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
@@ -29,6 +31,11 @@ function App() {
           name="Authorization"
           component={Authorization}
           options={{ title: "Authorization" }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={Registration}
+          options={{ title: "Sign Up" }}
         />
         <Stack.Screen
           name="Questions"

@@ -146,10 +146,10 @@ export function QuestionPage({ navigation } : Props) {
       <Button
         style={{ width: 202 }}
         onPress={() => {
-          navigation.navigate("Home")
+          navigation.navigate("Authorization")
         }}
       >
-        Submit
+        Sign Up
       </Button>
     </ScrollView>
   )
