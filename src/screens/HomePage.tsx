@@ -1,18 +1,59 @@
 import { Button } from "@rneui/base"
-import { SpeedDial, Tab, TabView, Text } from "@rneui/themed"
+import { Dialog, SpeedDial, Tab, TabView, Text } from "@rneui/themed"
 import React, { useState, useEffect } from "react"
 import { View } from "react-native"
 import { CurrentTraining } from "../components/tabViews/CurrentTraining"
 import { Favorites } from "../components/tabViews/Favorites"
-import { History } from "../components/tabViews/History"
+import { History } from "../components/tabViews/Profile"
 import { Props } from "../../App"
+import { CustomButton } from "../components/ui/CustomButton"
 
-export function HomePage({navigation} : {navigation: Props['navigation']}) {
+const namesForIndex = ["ТРЕНИРОВКА", "ИЗБРАННЫЕ", "ПРОФИЛЬ"]
+
+export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
   const [index, setIndex] = useState(0)
-  useEffect(()=>{
-    navigation.addListener('beforeRemove', (e)=>{
-      e.preventDefault()
+  const [dialogOpen, setDialogOpen] = useState(false)
+  function myPreventDefault(e: any) {
+    e.preventDefault()
+  }
+  useEffect(() => {
+    navigation.setOptions({
+      title: namesForIndex[index],
+      headerLeft: () => (
+        <Button
+          icon={{
+            name: "close",
+            type: "ionicon",
+            color: "rgb(28, 28, 30)",
+            size: 25,
+          }}
+          color="white"
+          style={{ paddingRight: 10, transform: "scaleX(-1)" }}
+          onPress={() => setDialogOpen(true)}
+        />
+      ),
+      headerRight: () => (
+        <Button
+          icon={{
+            name: "search",
+            type: "ionicon",
+            color: "rgb(32, 137, 220);",
+            size: 25,
+          }}
+          color="white"
+          style={{ paddingRight: 10 }}
+          titleStyle={{
+            color: "rgb(32, 137, 220)",
+            fontWeight: 500,
+            fontSize: 18,
+          }}
+          iconRight
+          onPress={() => navigation.navigate("Search")}
+        />
+      ),
     })
+    navigation.addListener("beforeRemove", myPreventDefault)
+    return () => navigation.removeListener("beforeRemove", myPreventDefault)
   })
   return (
     <>
@@ -46,6 +87,26 @@ export function HomePage({navigation} : {navigation: Props['navigation']}) {
           icon={{ name: "person", type: "ionicon", color: "white" }}
         />
       </Tab>
+      <Dialog
+        isVisible={dialogOpen}
+        onBackdropPress={() => setDialogOpen(false)}
+        overlayStyle={{ backgroundColor: "white" }}
+      >
+        <Text h4 style={{ textAlign: "center", marginBottom: 10 }}>
+          Are you sure?
+        </Text>
+        <Button
+          title="Log Out"
+          color="error"
+          onPress={() => {
+            console.log("navigation")
+            navigation.addListener("beforeRemove", (e) =>
+              navigation.dispatch(e.data.action)
+            )
+            navigation.navigate("Authorization")
+          }}
+        />
+      </Dialog>
     </>
   )
 }

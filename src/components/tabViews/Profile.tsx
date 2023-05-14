@@ -3,7 +3,6 @@ import {
   Divider,
   Icon,
   Image,
-  ListItem,
   TabView,
   Text,
 } from "@rneui/themed"
@@ -34,7 +33,7 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
 
           <View>
             <Text style={{ textAlign: "center", fontSize: 20 }}>
-              My goal:{" "}
+              Моя цель:{" "}
               <Text
                 style={{ textAlign: "center", fontSize: 20, fontWeight: "700" }}
               >
@@ -63,7 +62,7 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
               <Text
                 style={{ textAlign: "center", fontSize: 20, marginBottom: 5 }}
               >
-                Pumping muscles
+                Приоритетные мышцы
               </Text>
               <View
                 style={{
@@ -108,7 +107,7 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
           )}
         </View>
         <Button
-          title="Log Out"
+          title="Выйти  "
           type="clear"
           color="error"
           titleStyle={{ color: "red" }}
@@ -124,7 +123,7 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
             marginBottom: 5,
           }}
         >
-          My trainings
+         История тренировок
         </Text>
         <Divider />
         <HistoryListItem navigation={navigation} />
@@ -139,10 +138,10 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
           overlayStyle={{ backgroundColor: "white" }}
         >
           <Text h4 style={{ textAlign: "center", marginBottom: 10 }}>
-            Are you sure?
+            Вы уверены?
           </Text>
           <Button
-            title="Log Out"
+            title="Выйти"
             color="error"
             onPress={() => {
               console.log("navigation")

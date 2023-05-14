@@ -1,18 +1,18 @@
-import { TabView, Text, Dialog } from "@rneui/themed"
+import { TabView, Text, Dialog, Button } from "@rneui/themed"
 import { ScrollView, TouchableOpacity, View } from "react-native"
-import React from "react"
+import React, {useState} from "react"
 import { CurrentTrainingsCard } from "../CurrentTrainingsCard"
 import { ExercisesList } from "../ExercisesList"
 import { Props } from "../../../App"
-const ids = [1, 2, 3, 4]
+import { CustomButton } from "../ui/CustomButton"
+const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 export function Favorites({ navigation }: { navigation: Props["navigation"] }) {
+  const [seeMoreState, setSeeMoreState] = useState(false)
   return (
     <TabView.Item style={{ width: "100%" }}>
       <ScrollView style={{paddingBottom: 15}}>
-        <Text h3 style={{ textAlign: "center", marginTop: 15 }}>
-          Favorites
-        </Text>
-        <ExercisesList navigation={navigation} ids={ids} parent="favorites" />
+        <ExercisesList navigation={navigation} ids={seeMoreState ? ids : ids.slice(0,3)} parent="favorites" />
+        <CustomButton color="grey" title="Показать еще" onPress={()=>setSeeMoreState(!seeMoreState)}  />
       </ScrollView>
     </TabView.Item>
   )

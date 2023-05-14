@@ -1,7 +1,7 @@
-import { color } from "@rneui/base"
-import { Button, Divider, Icon, Image, Text } from "@rneui/themed"
+import { Button, Icon, Image, Text } from "@rneui/themed"
 import React, { useState, useEffect } from "react"
 import { Dimensions, ScrollView, View } from "react-native"
+import { Props } from "../../App"
 
 const technicImg =
   "https://avatars.dzeninfra.ru/get-zen_doc/101122/pub_5dc5c231c3cd3c2757f63271_5dc5d6b168e68b2090785568/scale_1200"
@@ -14,11 +14,28 @@ const technicSteps = [
   "Возвращайтесь в исходную позицию и продолжайте повторения",
 ]
 
-export function DetailedExercise() {
+export function DetailedExercise({navigation} : {navigation: Props['navigation']}) {
   const [imageSize, setImageSize] = useState(0)
   const [liked, setLiked] = useState(false)
   useEffect(() => {
     Image.getSize(technicImg, (width, height) => setImageSize(height / width))
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          icon={{
+            name: "search",
+            type: "ionicon",
+            color: "rgb(32, 137, 220);",
+            size: 25,
+          }}
+          color="white"
+          style={{ paddingRight: 10 }}
+          titleStyle={{ color: "rgb(32, 137, 220)", fontWeight: 500, fontSize: 18 }}
+          iconRight
+          onPress={()=>navigation.navigate('Search')}
+        />
+      ),
+    })
   }, [])
   return (
     <View style={{height: '100%', backgroundColor: 'white', flex: 1}}>

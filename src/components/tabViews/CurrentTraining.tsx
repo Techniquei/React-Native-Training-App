@@ -32,9 +32,6 @@ export function CurrentTraining({
           <Dialog.Loading />
         ) : (
           <View>
-            <Text h3 style={{ textAlign: "center", marginTop: 15 }}>
-              Current Training
-            </Text>
             <ExercisesList ids={ids} navigation={navigation} parent="current" />
             <Button
               buttonStyle={{
