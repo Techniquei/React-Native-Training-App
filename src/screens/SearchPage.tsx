@@ -23,7 +23,7 @@ export function SearchPage({ navigation } : Props){
                 clearIcon = {<Icon name="close" type="ionicon" color="black" size={25}  onPress={()=> setInputText('')} /> }
                 platform="android"
                 showLoading = {laodingState}
-                
+                autoFocus
             />
           ),
         })
