@@ -12,6 +12,7 @@ import { Props } from "../../../App"
 import { useState } from "react"
 import { goalByIndex, musclesList } from "../../screens/QuestionPage"
 import { Button, Dialog } from "@rneui/base"
+
 export function History({ navigation }: { navigation: Props["navigation"] }) {
   const [goalState, setGoalState] = useState(1)
   const [musclesState, setMusclesState] = useState<string[]>([])
@@ -24,7 +25,7 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
     }
   }
   return (
-    <TabView.Item style={{ width: "100%" }}>
+    <TabView.Item style={{ width: "100%", backgroundColor: '#ccddeb' }}>
       <ScrollView>
         <View style={{ padding: 15, alignItems: "center" }}>
           <Text h4 style={{ textAlign: "center", marginBottom: 15 }}>
@@ -43,18 +44,18 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
 
             <ButtonGroup
               buttons={[
-                <Icon name="leaf" type="ionicon" color="lawngreen" size={80} />,
-                <Icon name="heart" type="ionicon" color="salmon" size={80} />,
-                <Icon name="barbell" type="ionicon" size={80} />,
+                <Icon name="leaf" type="ionicon" color="lawngreen" size={70} />,
+                <Icon name="heart" type="ionicon" color="salmon" size={70} />,
+                <Icon name="barbell" type="ionicon" size={70} />,
               ]}
               selectedIndex={goalState}
               onPress={(value) => {
                 setGoalState(value)
               }}
-              selectedButtonStyle={{ backgroundColor: "grey" }}
+              selectedButtonStyle={{ borderRadius: 10, borderWidth: 5, borderColor: 'rgb(32, 137, 220)', backgroundColor: 'white' }}
               buttonStyle={{ width: 90, height: 90 }}
-              buttonContainerStyle={{ width: 90, height: 90 }}
-              containerStyle={{ width: 270, height: 90 }}
+              buttonContainerStyle={{ width: 90, height: 90, borderWidth: 0, backgroundColor: 'white', borderRadius: 10 }}
+              containerStyle={{ gap: 10, height: 90, backgroundColor: 'transparent', display: 'flex', flexDirection: 'row', borderWidth: 0 }}
             />
           </View>
           {goalState == 2 ? (
@@ -69,33 +70,30 @@ export function History({ navigation }: { navigation: Props["navigation"] }) {
                   flexDirection: "row",
                   flexWrap: "wrap",
                   justifyContent: "center",
-                  maxWidth: 287,
+                  maxWidth: 300,
+                  gap: 10
                 }}
               >
                 {musclesList.map((item, index) => (
                   <TouchableOpacity
                     key={item.name + index}
                     style={{
-                      backgroundColor: musclesState.includes(item.name)
-                        ? "grey"
-                        : "white",
+                      backgroundColor: "white",
                       padding: 10,
                       borderColor: musclesState.includes(item.name)
-                        ? "dimgrey"
-                        : "gainsboro",
-                      borderWidth: 1,
-                      borderRadius: 2,
+                        ? "rgb(32, 137, 220)"
+                        : "white",
+                      borderWidth: 5,
+                      borderRadius: 10,
                     }}
                     onPress={() => musclesHandler(item.name)}
                   >
                     <Image
                       source={{ uri: item.Image }}
                       style={{
-                        width: 70,
-                        height: 70,
-                        tintColor: musclesState.includes(item.name)
-                          ? "white"
-                          : "black",
+                        width: 60,
+                        height: 60,
+                        tintColor: "black",
                       }}
                     />
                   </TouchableOpacity>

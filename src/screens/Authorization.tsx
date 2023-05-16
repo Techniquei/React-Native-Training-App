@@ -52,6 +52,7 @@ export function Authorization({ navigation } : Props) {
               <Button
                 onPress={handleSubmit}
                 style={{paddingHorizontal: 10}}
+                color="#FFC516"
               >
                 Sign In
               </Button>
@@ -62,6 +63,7 @@ export function Authorization({ navigation } : Props) {
           type="clear"
           onPress={() => navigation.navigate("SignUp")}
           style={{paddingHorizontal: 10}}
+          titleStyle={{color: '#FF5816'}}
         >
           Sign Up
         </Button>

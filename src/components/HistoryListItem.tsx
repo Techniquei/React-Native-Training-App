@@ -28,7 +28,7 @@ export function HistoryListItem({navigation}:{navigation:Props['navigation']}){
 
         >
           <View
-              style={{ flexDirection: "row", gap: 5, justifyContent: "center", backgroundColor: 'white' }}
+              style={{ flexDirection: "row", gap: 5, justifyContent: "center", backgroundColor: 'white', padding: 10 }}
             >
               <Image
                 style={{

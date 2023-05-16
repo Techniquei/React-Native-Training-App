@@ -24,11 +24,11 @@ export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
           icon={{
             name: "close",
             type: "ionicon",
-            color: "rgb(28, 28, 30)",
+            color: "black",
             size: 25,
           }}
-          color="white"
-          style={{ paddingRight: 10, transform: "scaleX(-1)" }}
+          color="rgb(32, 137, 220)"
+          style={{ paddingRight: 10 }}
           onPress={() => setDialogOpen(true)}
         />
       ),
@@ -37,14 +37,14 @@ export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
           icon={{
             name: "search",
             type: "ionicon",
-            color: "rgb(32, 137, 220);",
+            color: "white",
             size: 25,
           }}
-          color="white"
+          color="rgb(32, 137, 220)"
           style={{ paddingRight: 10 }}
           titleStyle={{
-            color: "rgb(32, 137, 220)",
-            fontWeight: 500,
+            color: "white",
+            fontWeight: "500",
             fontSize: 18,
           }}
           iconRight

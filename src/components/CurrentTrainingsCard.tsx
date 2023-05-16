@@ -37,7 +37,7 @@ export function CurrentTrainingsCard({ id }: { id: number }) {
             }}
             reviewColor="black"
             starImage={muscleImage}
-            selectedColor={"red"}
+            selectedColor="#FF5816"
             
             isDisabled
           />
@@ -58,6 +58,7 @@ export function CurrentTrainingsCard({ id }: { id: number }) {
             }}
             reviewColor="black"
             starImage={energyImage}
+            selectedColor="#FFC516"
             isDisabled
           />
           </View>
