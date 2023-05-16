@@ -26,7 +26,7 @@ export function CurrentTraining({
   const [difficultyIndex, setDifficultyIndex] = useState()
   const [rating, setRating] = useState(5)
   return (
-    <TabView.Item style={{ width: "100%" }}>
+    <TabView.Item style={{ width: "100%", backgroundColor: '#ccddeb' }}>
       <ScrollView>
         {loadingState ? (
           <Dialog.Loading />
@@ -37,11 +37,11 @@ export function CurrentTraining({
               buttonStyle={{
                 margin: 15,
                 borderRadius: 15,
-                backgroundColor: "green",
+                backgroundColor: "#FFC516",
               }}
               title="FINISH"
-              icon={{ name: "flag", type: "ionicon", color: "white", size: 30 }}
-              titleStyle={{ fontSize: 20, fontWeight: "700", letterSpacing: 2 }}
+              icon={{ name: "flag", type: "ionicon", color: "#0A558F", size: 30 }}
+              titleStyle={{ fontSize: 20, fontWeight: "700", letterSpacing: 2, color: '#0A558F' }}
               onPress={() => setOverlayState(true)}
             />
           </View>
@@ -88,7 +88,7 @@ export function CurrentTraining({
                 setRating(3)
                 setTimeout(() => setLoadingState(false), 1000)
               }}
-              color="green"
+              color="#FFC516"
               buttonStyle={{ borderRadius: 15 }}
             >
               ЗАВЕРШИТЬ

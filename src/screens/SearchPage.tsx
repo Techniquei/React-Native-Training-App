@@ -1,11 +1,25 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import { Props } from "../../App";
-import { Dimensions, ScrollView, View } from "react-native"
+import { Dimensions, ScrollView, View } from "react-native";
 import { Icon, SearchBar, Text } from "@rneui/themed";
 import { StackActions } from "@react-navigation/native";
 import { ExercisesList } from "../components/ExercisesList";
+import SelectDropdown from "react-native-select-dropdown";
 
-const recomendationIds = [1, 2]
+const recomendationIds = [1, 2];
+const groups = [
+  "Все упражнения",
+  "upper legs",
+  "chest",
+  "waist",
+  "back",
+  "shoulders",
+  "upper arms",
+  "cardio",
+  "lower legs",
+  "lower arms",
+  "neck",
+];
 
 export function SearchPage({ navigation } : Props){
     const [inputText, setInputText] = useState('')
@@ -23,7 +37,7 @@ export function SearchPage({ navigation } : Props){
                 clearIcon = {<Icon name="close" type="ionicon" color="black" size={25}  onPress={()=> setInputText('')} /> }
                 platform="android"
                 showLoading = {laodingState}
-                autoFocus
+                
             />
           ),
         })
