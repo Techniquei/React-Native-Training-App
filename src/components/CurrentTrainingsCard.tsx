@@ -1,25 +1,31 @@
 import { Image, Card, Text, AirbnbRating, Button } from "@rneui/themed"
+import { useEffect, useState } from "react"
 import { View } from "react-native"
+import { getExerciseInfo } from "../api"
 const muscleGroup = "Back"
 const muscleImage = require("../img/muscle.png")
 const energyImage = require("../img/energy.png")
 
 export function CurrentTrainingsCard({ id }: { id: number }) {
-  return (
+  const [infoState, setInfoState] = useState(null)
+  useEffect(()=>{
+    getExerciseInfo(id).then(data=>setInfoState(data))
+  },[])
+  if(infoState) return (
     <Card containerStyle={{ paddingLeft: 0, borderRadius: 15 }}>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <Image
           style={{flex: 1, width: 120, height: 120, resizeMode: 'contain', flexShrink: 2}}
           source={{
-            uri: "https://i0.wp.com/trener59.ru/wp-content/uploads/2019/12/podtjagivanija-na-perekladine-foto.jpg?w=160&ssl=1",
+            uri: infoState.image,
           }}
         />
         <View style={{ flex: 1 }}>
           <Text style={{ fontSize: 20, fontWeight: "500", marginBottom: 10 }}>
-            Подтягивания на перекладине
+            {infoState.title}
           </Text>
           <View style={{marginLeft: -10}}>
-            <Text style={{fontSize: 13, fontWeight: "700", marginLeft: 10, marginBottom: 10 }}>Muscle group: {muscleGroup}</Text>
+            <Text style={{fontSize: 13, fontWeight: "700", marginLeft: 10, marginBottom: 10 }}>Muscle group: {infoState.muscleGroup.title}</Text>
             <AirbnbRating
             reviews={[
               "Dificulty",
@@ -28,7 +34,7 @@ export function CurrentTrainingsCard({ id }: { id: number }) {
               "Dificulty",
               "Dificulty",
             ]}
-            defaultRating={3}
+            defaultRating={Math.ceil(infoState.difficulty/2)}
             size={20}
             reviewSize={13}
             ratingContainerStyle={{
@@ -67,4 +73,7 @@ export function CurrentTrainingsCard({ id }: { id: number }) {
       </View>
     </Card>
   )
+
+  return <></>
+  
 }

@@ -10,31 +10,31 @@ import { Props } from "../../App"
 
 export const musclesList = [
   {
-    name: "Legs",
+    name: "trainLegs",
     Image:
       "https://icons.iconarchive.com/icons/icons8/windows-8/256/Sports-Leg-icon.png",
   },
   {
-    name: "Arms",
+    name: "trainHands",
     Image:
       "https://icons.iconarchive.com/icons/icons8/windows-8/256/Sports-Hand-Biceps-icon.png",
   },
   {
-    name: "Shoulders",
+    name: "trainShoulders",
     Image:
       "https://icons.iconarchive.com/icons/icons8/windows-8/512/Sports-Shoulders-icon.png",
   },
   {
-    name: "Back",
+    name: "trainBack",
     Image:
       "https://icons.iconarchive.com/icons/icons8/android/512/Sports-Back-icon.png",
   },
   {
-    name: "Chest",
+    name: "trainChest",
     Image: "https://icon-library.com/images/muscles-icon/muscles-icon-27.jpg",
   },
   {
-    name: "Abs",
+    name: "trainPress",
     Image:
       "https://icons.iconarchive.com/icons/icons8/windows-8/256/Sports-Prelum-icon.png",
   },

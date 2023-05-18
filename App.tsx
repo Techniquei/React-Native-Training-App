@@ -14,11 +14,14 @@ import { Registration } from "./src/screens/Registration";
 import { SearchPage } from "./src/screens/SearchPage";
 import { CustomButton } from "./src/components/ui/CustomButton";
 import { Button, Input } from "@rneui/themed";
-
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 const Stack = createNativeStackNavigator();
 type RootStackParamList = {
   Home: undefined;
-  Detailed: undefined;
+  Detailed: {id :  number};
   Authorization: undefined;
   Questions: undefined;
   SignUp: undefined;
@@ -26,9 +29,11 @@ type RootStackParamList = {
 };
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
+const queryClient = new QueryClient()
+
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
       <NavigationContainer>
         <Stack.Navigator>
@@ -139,7 +144,7 @@ function App() {
           <Stack.Screen name="Search" component={SearchPage} />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </QueryClientProvider>
   );
 }
 export default App;

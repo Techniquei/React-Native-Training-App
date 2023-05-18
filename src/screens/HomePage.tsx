@@ -4,9 +4,11 @@ import React, { useState, useEffect } from "react"
 import { View } from "react-native"
 import { CurrentTraining } from "../components/tabViews/CurrentTraining"
 import { Favorites } from "../components/tabViews/Favorites"
-import { History } from "../components/tabViews/Profile"
+import { Profile } from "../components/tabViews/Profile"
 import { Props } from "../../App"
 import { CustomButton } from "../components/ui/CustomButton"
+import { getInfoAboutMe, logout } from "../api"
+import { useQuery } from "@tanstack/react-query"
 
 const namesForIndex = ["ТРЕНИРОВКА", "ИЗБРАННЫЕ", "ПРОФИЛЬ"]
 
@@ -60,7 +62,7 @@ export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
       <TabView value={index} onChange={setIndex} animationType="spring">
         <CurrentTraining navigation={navigation} />
         <Favorites navigation={navigation} />
-        <History navigation={navigation} />
+        <Profile navigation={navigation} />
       </TabView>
       <Tab
         value={index}
@@ -104,6 +106,7 @@ export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
               navigation.dispatch(e.data.action)
             )
             navigation.navigate("Authorization")
+            // logout()
           }}
         />
       </Dialog>
