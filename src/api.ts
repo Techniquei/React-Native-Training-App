@@ -56,13 +56,13 @@ export function getTraining(userId: number) {
 
 export function getFavorites(userId: number) {
   return instance
-    .get(`/favorite-exercises/by-user?userId=${userId}`)
+    .get(`/favorite-exercises/by-user?id=${userId}`)
     .then((res) => res.data.map((e) => e.exercise.id))
 }
 
 export function checkForLike(userId: number, exerciseId: number) {
   return instance
-    .get(`/favorite-exercises/by-user?userId=${userId}`)
+    .get(`/favorite-exercises/by-user?id=${userId}`)
     .then((res) => res.data.map((e) => e.exercise.id).includes(exerciseId))
 }
 
@@ -70,10 +70,10 @@ export function likeOnOff(userId: number, exerciseId: number, liked: boolean) {
   if (liked)
     return instance.post(
       `/users/remove-favorite-exercise?userId=${userId}&exerciseId=${exerciseId}`
-    )
+    ).then(res=>res.data)
   return instance.post(
     `/users/add-favorite-exercise?userId=${userId}&exerciseId=${exerciseId}`
-  )
+  ).then(res=>res.data)
 }
 
 export function finishTraining(userId: number, difficulty: number, rating:number) {

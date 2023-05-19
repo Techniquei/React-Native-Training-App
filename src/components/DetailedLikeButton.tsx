@@ -1,30 +1,34 @@
 import { Button, Dialog } from "@rneui/themed"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { checkForLike, likeOnOff } from "../api"
 import { getStoreUserId } from "../store"
 
 export function DeatiledLikeButton({ exerciseId }: { exerciseId: number }) {
   console.log("button" + exerciseId)
+  const [loadingState, setLoadingState] = useState(true)
   const [userIdState, setUserIdState] = useState(null)
   useEffect(() => {
     getStoreUserId().then((data) => setUserIdState(data))
   }, [])
   const queryClient = useQueryClient()
-  const { data, isSuccess } = useQuery({
+  const { data, refetch } = useQuery({
     queryFn: () => checkForLike(userIdState, exerciseId, data),
-    onSuccess: () => console.log(data),
+    onSuccess: () => setLoadingState(false),
     queryKey: ["likeButton", userIdState],
   })
 
-  const {mutate, isLoading} = useMutation({
+  const {mutate} = useMutation({
     mutationFn: ()=>likeOnOff(userIdState, exerciseId, data),
+    onMutate: ()=>setLoadingState(true),
     onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["likeButton", "favorites"] })
+        console.log('success')
+        queryClient.refetchQueries({ type: 'active'})
+        // queryClient.invalidateQueries({ queryKey: ["likeButton", "favorites"] })
       },
   })
 
-  if (data!=undefined && isSuccess && !isLoading)
+  if (data!=undefined && !loadingState)
     return (
       <Button
         buttonStyle={{

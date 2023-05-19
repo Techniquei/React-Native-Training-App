@@ -120,11 +120,11 @@ export function SearchPage({ navigation }: Props) {
           ids={
             sortState == "hard"
               ? data
-                  .filter((e) => e.title.includes(inputText))
+                  .filter((e) => e.title.includes(inputText.toLowerCase()))
                   .slice(paginationCounter, paginationCounter + 5)
                   .map((e) => e.id)
               : data
-                  .filter((e) => e.title.includes(inputText))
+                  .filter((e) => e.title.includes(inputText.toLowerCase()))
                   .reverse()
                   .slice(paginationCounter, paginationCounter + 5)
                   .map((e) => e.id)

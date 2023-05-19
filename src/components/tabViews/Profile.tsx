@@ -15,7 +15,7 @@ import { goalByIndex, musclesList } from "../../screens/QuestionPage"
 import { Button, Dialog } from "@rneui/base"
 import { getStoreUserId } from "../../store"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import NumericInput from 'react-native-numeric-input'
+import NumericInput from "react-native-numeric-input"
 import { getUserById, updateUser } from "../../api"
 
 export function Profile({ navigation }: { navigation: Props["navigation"] }) {
@@ -29,7 +29,7 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
   const { data } = useQuery({
     queryKey: ["userInfo", userIdState],
     queryFn: () => getUserById(userIdState),
-    refetchInterval: 10000
+    refetchInterval: 10000,
   })
 
   const { mutate, isLoading } = useMutation({
@@ -58,23 +58,7 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
             </Text>
 
             <View>
-              {/* <View style={{ flexDirection: "row", alignItems: 'center', flex: 1, width: 300 }}>
-                <Text style={{ textAlign: "center", fontSize: 20, flexShrink: 0 }}>
-                  Мой вес:{" "}
-                </Text>
-                <Input
-                  style={{
-                    textAlign: "center",
-                    fontSize: 20,
-                    fontWeight: "700",
-                    width: 100
-                  }}
-                  containerStyle={{flexShrink:10}}
-                  
-                />
-              </View> */}
               <Input
-              
                 rightIcon={
                   <Icon
                     name="pencil"
@@ -84,7 +68,13 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
                   />
                 }
                 containerStyle={{ width: 100, alignSelf: "center" }}
-                inputStyle={{ fontSize: 20, fontWeight: "700", color: "black", width: 50, textAlign: 'right' }}
+                inputStyle={{
+                  fontSize: 20,
+                  fontWeight: "700",
+                  color: "black",
+                  width: 50,
+                  textAlign: "right",
+                }}
                 labelStyle={{
                   fontSize: 20,
                   fontWeight: "400",
@@ -93,10 +83,14 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
                 label="Мой вес"
                 keyboardType="numeric"
                 textAlign="right"
-                placeholderTextColor='black'
+                placeholderTextColor="black"
                 placeholder={data.weight}
-                onEndEditing={(e)=>mutate({id: userIdState, weight: e.nativeEvent.text})}
-                onBlur={(e)=>mutate({id: userIdState, weight: e.nativeEvent.text})}
+                onEndEditing={(e) =>
+                  mutate({ id: userIdState, weight: e.nativeEvent.text })
+                }
+                onBlur={(e) =>
+                  mutate({ id: userIdState, weight: e.nativeEvent.text })
+                }
                 maxLength={3}
               />
 
@@ -232,8 +226,25 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
             История тренировок
           </Text>
           <Divider />
-          <HistoryListItem navigation={navigation} />
-          <HistoryListItem navigation={navigation} />
+          {data.trainings
+            .slice(0, -1)
+            .reverse()
+            .map((e) => (
+              <HistoryListItem
+               key={'history'+e.id}
+                navigation={navigation}
+                date={e.datetime_start}
+                difficulty={e.difficulty}
+                rating={e.rating}
+                exercises={e.exercises.map((ex)=>{
+                  if(ex.exercise){
+                    return {id: ex.exercise.id, image: ex.exercise.image}
+                  }else{
+                    return {id: null, image: null}
+                  }
+                })}
+              />
+            ))}
           <Dialog
             isVisible={dialogOpen}
             onBackdropPress={() => setDialogOpen(false)}
