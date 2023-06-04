@@ -4,6 +4,9 @@ import { storeUserId } from "./store";
 const instance = axios.create({
   // withCredentials: true,
   baseURL: "http://185.225.35.213:3000",
+  headers: {
+    "x-auth-token": "TEST AUTH TOKEN"
+  }
 })
 
 export function registration(regData) {
