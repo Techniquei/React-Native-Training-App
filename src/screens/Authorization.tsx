@@ -7,10 +7,9 @@ import * as yup from "yup"
 import { Ionicons } from "@expo/vector-icons"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Props } from "../../App"
-import { authorization } from "../api"
-import { storeUserId, getStoreUserId } from "../store"
+import { authorization, getUserMe } from "../api"
+import { storeToken, getToken, getStoreUserId } from "../store"
 import alert from "../alert"
-
 
 const loginValidationSchema = yup.object().shape({
   email: yup.string().required("Введите почту").email("Неверный формат"),
@@ -18,19 +17,19 @@ const loginValidationSchema = yup.object().shape({
 })
 
 export function Authorization({ navigation }: Props) {
-  useEffect(()=>{
-    getStoreUserId().then((id)=>id ? navigation.navigate("Home") : null)
+  useEffect(() => {
+    getStoreUserId().then((id) => (id ? navigation.navigate("Home") : null))
   }, [])
-  const {mutateAsync, isLoading} = useMutation({
+  const { mutateAsync, isLoading } = useMutation({
     mutationFn: authorization,
     onSettled: (data) => {
-      if(data){
-        storeUserId(data.id).then(()=>navigation.navigate("Home"))
-      }else{
+      if (data) {
+        storeToken(data).then(getUserMe).then((id) => id ? navigation.navigate("Home")  : null)
+      } else {
         alert("Неверная почта или пароль")
       }
     },
-    mutationKey: 'auth'
+    mutationKey: "auth",
   })
   async function loginHandler(values: any) {
     await mutateAsync(values)
@@ -76,7 +75,6 @@ export function Authorization({ navigation }: Props) {
                 onPress={handleSubmit}
                 style={{ paddingHorizontal: 10 }}
                 loading={isLoading}
-
                 radius={10}
               >
                 Войти

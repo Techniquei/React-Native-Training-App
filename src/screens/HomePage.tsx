@@ -9,7 +9,8 @@ import { Props } from "../../App"
 import { CustomButton } from "../components/ui/CustomButton"
 import { getInfoAboutMe, logout } from "../api"
 import { useQuery } from "@tanstack/react-query"
-import { deleteUserId } from "../store"
+import { deleteTokenAndId } from "../store"
+
 
 const namesForIndex = ["ТРЕНИРОВКА", "ИЗБРАННЫЕ", "ПРОФИЛЬ"]
 
@@ -107,7 +108,7 @@ export function HomePage({ navigation }: { navigation: Props["navigation"] }) {
               navigation.dispatch(e.data.action)
             )
             navigation.navigate("Authorization")
-            deleteUserId()
+            deleteTokenAndId()
           }}
         />
       </Dialog>
