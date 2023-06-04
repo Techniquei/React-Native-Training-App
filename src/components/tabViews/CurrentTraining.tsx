@@ -1,5 +1,4 @@
 import {
-  Image,
   TabView,
   Text,
   Button,
@@ -8,8 +7,7 @@ import {
   AirbnbRating,
   ButtonGroup,
 } from "@rneui/themed"
-import { View, ScrollView, TouchableOpacity, Dimensions } from "react-native"
-import { CurrentTrainingsCard } from "../CurrentTrainingsCard"
+import { View, ScrollView } from "react-native"
 import React, { useEffect, useState } from "react"
 import { ExercisesList } from "../ExercisesList"
 import { Props } from "../../../App"
@@ -55,25 +53,24 @@ export function CurrentTraining({
               ids={data}
               navigation={navigation}
               parent="current"
+              loading={!isSuccess || isLoading || !data}
             />
             <Button
               buttonStyle={{
                 margin: 15,
-                borderRadius: 15,
-                backgroundColor: "#FFC516",
+                borderRadius: 10,
               }}
               title="FINISH"
               icon={{
                 name: "flag",
                 type: "ionicon",
-                color: "#0A558F",
                 size: 30,
+                color: '#FFFF'
               }}
               titleStyle={{
                 fontSize: 20,
                 fontWeight: "700",
                 letterSpacing: 2,
-                color: "#0A558F",
               }}
               onPress={() => setOverlayState(true)}
             />
@@ -85,7 +82,7 @@ export function CurrentTraining({
           isVisible={overlayState}
           onBackdropPress={() => setOverlayState(false)}
           overlayStyle={{
-            borderRadius: 15,
+            borderRadius: 10,
             padding: 15,
             margin: 10,
             width: "95%",
@@ -110,6 +107,8 @@ export function CurrentTraining({
               width: "100%",
               alignSelf: "center",
               maxWidth: 370,
+              marginTop: 10,
+              marginBottom:  15
             }}
           />
 
@@ -121,8 +120,12 @@ export function CurrentTraining({
               setDifficultyIndex(undefined)
               setRating(3)
             }}
-            color="#FFC516"
-            buttonStyle={{ borderRadius: 15 }}
+            buttonStyle={{ borderRadius: 10 }}
+            titleStyle={{
+              fontSize: 20,
+              fontWeight: "700",
+              letterSpacing: 2,
+            }}
           >
             ЗАВЕРШИТЬ
           </Button>

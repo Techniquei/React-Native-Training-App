@@ -1,29 +1,33 @@
 import { Button } from "@rneui/base"
 import { Icon, Input, Text } from "@rneui/themed"
 import { Formik, useFormik } from "formik"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { TextInput, View, Alert } from "react-native"
 import * as yup from "yup"
 import { Ionicons } from "@expo/vector-icons"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Props } from "../../App"
 import { authorization } from "../api"
-import { storeUserId } from "../store"
+import { storeUserId, getStoreUserId } from "../store"
+import alert from "../alert"
 
 
 const loginValidationSchema = yup.object().shape({
-  email: yup.string().required("Email is required"),
-  password: yup.string().required("Password is required"),
+  email: yup.string().required("Введите почту").email("Неверный формат"),
+  password: yup.string().required("Введите пароль"),
 })
 
 export function Authorization({ navigation }: Props) {
-  const {data, mutateAsync} = useMutation({
+  useEffect(()=>{
+    getStoreUserId().then((id)=>id ? navigation.navigate("Home") : null)
+  }, [])
+  const {mutateAsync, isLoading} = useMutation({
     mutationFn: authorization,
     onSettled: (data) => {
       if(data){
         storeUserId(data.id).then(()=>navigation.navigate("Home"))
       }else{
-        console.log('error')
+        alert("Неверная почта или пароль")
       }
     },
     mutationKey: 'auth'
@@ -71,9 +75,11 @@ export function Authorization({ navigation }: Props) {
               <Button
                 onPress={handleSubmit}
                 style={{ paddingHorizontal: 10 }}
-                color="#FFC516"
+                loading={isLoading}
+
+                radius={10}
               >
-                Sign In
+                Войти
               </Button>
             </View>
           )}
@@ -82,9 +88,9 @@ export function Authorization({ navigation }: Props) {
           type="clear"
           onPress={() => navigation.navigate("SignUp")}
           style={{ paddingHorizontal: 10 }}
-          titleStyle={{ color: "#FF5816" }}
+          titleStyle={{ color: "rgb(32, 137, 220)" }}
         >
-          Sign Up
+          Создать аккаунт
         </Button>
         <Ionicons
           name="md-checkmark-circle"

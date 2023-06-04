@@ -8,8 +8,6 @@ import SelectDropdown from "react-native-select-dropdown"
 import { useQuery } from "@tanstack/react-query"
 import { getAllExercisesByGroup } from "../api"
 
-
-const recomendationIds = [1, 2]
 const groups = [
   "all",
   "lower arms",
@@ -42,8 +40,9 @@ export function SearchPage({ navigation }: Props) {
         <SearchBar
           value={inputText}
           onChangeText={(e) => setInputText(e)}
-          containerStyle={{ backgroundColor: "white", borderColor: "white" }}
-          inputContainerStyle={{ backgroundColor: "white" }}
+          containerStyle={{ backgroundColor: "white", borderColor: "#2089DC" }}
+          inputContainerStyle={{ borderColor: "#2089DC" }}
+          inputStyle={{borderColor: "#2089DC", backgroundColor: "white"}}
           cancelIcon={
             <Icon
               name="arrow-back"
@@ -53,6 +52,7 @@ export function SearchPage({ navigation }: Props) {
               onPress={() => navigation.dispatch(popAction)}
             />
           }
+
           searchIcon={
             <Icon
               name="arrow-back"
@@ -71,6 +71,11 @@ export function SearchPage({ navigation }: Props) {
               onPress={() => setInputText("")}
             />
           }
+
+          placeholder="Поиск упражнений"
+
+          autoFocus
+
           platform="android"
           showLoading={laodingState}
         />
@@ -116,29 +121,33 @@ export function SearchPage({ navigation }: Props) {
         </View>
       </View>
       {data ? (
+        <>
+        <Text style={{marginLeft: 20}}>Найдено {data.filter((e) => e.title.includes(inputText.toLowerCase())).length} упражнений</Text>
         <ExercisesList
           ids={
             sortState == "hard"
               ? data
                   .filter((e) => e.title.includes(inputText.toLowerCase()))
-                  .slice(paginationCounter, paginationCounter + 5)
+                  .slice(0, paginationCounter + 5)
                   .map((e) => e.id)
               : data
                   .filter((e) => e.title.includes(inputText.toLowerCase()))
                   .reverse()
-                  .slice(paginationCounter, paginationCounter + 5)
+                  .slice(0, paginationCounter + 5)
                   .map((e) => e.id)
           }
           parent="search"
           navigation={navigation}
         />
+        </>
+        
       ) : (
         <Dialog.Loading />
       )}
       <Button
         buttonStyle={{
           margin: 15,
-          borderRadius: 15,
+          borderRadius: 10,
           backgroundColor: "grey",
         }}
         title="More"
@@ -149,14 +158,6 @@ export function SearchPage({ navigation }: Props) {
           color: "white",
         }}
         onPress={loadMore}
-      />
-      <Text h4 style={{ textAlign: "center" }}>
-        Рекомендации
-      </Text>
-      <ExercisesList
-        ids={recomendationIds}
-        parent="search"
-        navigation={navigation}
       />
     </ScrollView>
   )

@@ -43,11 +43,11 @@ export const musclesList = [
 export function goalByIndex(index: number) {
   switch (index) {
     case 0:
-      return "Slim"
+      return "похудение"
     case 1:
-      return "Health"
+      return "здоровье"
     case 2:
-      return "Straight"
+      return "сила"
   }
 }
 

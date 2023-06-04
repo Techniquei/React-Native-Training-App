@@ -1,10 +1,8 @@
-import { TabView, Text, Dialog, Button } from "@rneui/themed"
-import { ScrollView, TouchableOpacity, View } from "react-native"
+import { TabView, Dialog, Button } from "@rneui/themed"
+import { ScrollView } from "react-native"
 import React, { useEffect, useState } from "react"
-import { CurrentTrainingsCard } from "../CurrentTrainingsCard"
 import { ExercisesList } from "../ExercisesList"
 import { Props } from "../../../App"
-import { CustomButton } from "../ui/CustomButton"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getFavorites } from "../../api"
 import { getStoreUserId } from "../../store"
@@ -14,7 +12,6 @@ export function Favorites({ navigation }: { navigation: Props["navigation"] }) {
   useEffect(() => {
     getStoreUserId().then((data) => setUserIdState(data))
   }, [])
-  const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
     queryFn: () => getFavorites(userIdState),
     onSuccess: () => console.log(data),
@@ -36,7 +33,7 @@ export function Favorites({ navigation }: { navigation: Props["navigation"] }) {
         <Button
           buttonStyle={{
             margin: 15,
-            borderRadius: 15,
+            borderRadius: 10,
             backgroundColor: "grey",
           }}
           title="More"

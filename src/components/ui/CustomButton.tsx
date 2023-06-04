@@ -5,7 +5,7 @@ export function CustomButton({color, onPress, title, icon, style}) {
     <Button
       buttonStyle={{
         margin: 15,
-        borderRadius: 15,
+        borderRadius: 10,
         backgroundColor: color,
       }}
       title={title}

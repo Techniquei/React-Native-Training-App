@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Props } from "../../App"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
-const difficults = ['light', 'normal', 'hard']
+const difficults = ['Легкая', 'Нормальная', 'Тяжелая']
 
 export function HistoryListItem({
   navigation,
@@ -56,7 +56,7 @@ export function HistoryListItem({
       >
         
         {exercises.map((e)=>{
-        if(e.id!=null){return<TouchableOpacity onPress={()=>navigation.navigate('Detailed', {id: e.id})}>
+        if(e.id!=null){return<TouchableOpacity onPress={()=>navigation.navigate('Detailed', {id: e.id})} key={e.id + 'historyListItem'}>
           <Image
           style={{
             width: 50,

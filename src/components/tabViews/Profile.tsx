@@ -20,7 +20,7 @@ import { getUserById, updateUser } from "../../api"
 
 export function Profile({ navigation }: { navigation: Props["navigation"] }) {
   const [musclesState, setMusclesState] = useState<string[]>([])
-  const [userIdState, setUserIdState] = useState(null)
+  const [userIdState, setUserIdState] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   useEffect(() => {
     getStoreUserId().then((data) => setUserIdState(data))
@@ -53,9 +53,19 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
       <TabView.Item style={{ width: "100%", backgroundColor: "#ccddeb" }}>
         <ScrollView>
           <View style={{ padding: 15, alignItems: "center" }}>
-            <Text h4 style={{ textAlign: "center", marginBottom: 15 }}>
-              {data.email}
-            </Text>
+            <Button
+              type="clear"
+              titleStyle={{ color: "red" }}
+              icon={
+                <Icon name="exit" type="ionicon" size={30} color="#fa8072" containerStyle={{paddingLeft: 10}} />
+              }
+              iconRight
+              onPress={() => setDialogOpen(true)}
+              title={data.email}
+              titleProps={{
+                style: { fontSize: 20, fontWeight: "700", color: "black" },
+              }}
+            />
 
             <View>
               <Input
@@ -205,15 +215,6 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
               ""
             )}
           </View>
-          <Button
-            title="Выйти  "
-            type="clear"
-            color="error"
-            titleStyle={{ color: "red" }}
-            icon={<Icon name="exit" type="ionicon" size={30} color="red" />}
-            iconRight
-            onPress={() => setDialogOpen(true)}
-          />
           <Text
             style={{
               textAlign: "center",
@@ -231,16 +232,16 @@ export function Profile({ navigation }: { navigation: Props["navigation"] }) {
             .reverse()
             .map((e) => (
               <HistoryListItem
-               key={'history'+e.id}
+                key={"history" + e.id}
                 navigation={navigation}
                 date={e.datetime_start}
                 difficulty={e.difficulty}
                 rating={e.rating}
-                exercises={e.exercises.map((ex)=>{
-                  if(ex.exercise){
-                    return {id: ex.exercise.id, image: ex.exercise.image}
-                  }else{
-                    return {id: null, image: null}
+                exercises={e.exercises.map((ex) => {
+                  if (ex.exercise) {
+                    return { id: ex.exercise.id, image: ex.exercise.image }
+                  } else {
+                    return { id: null, image: null }
                   }
                 })}
               />

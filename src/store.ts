@@ -18,3 +18,11 @@ export async function getStoreUserId() {
     console.log(e)
   }
 }
+
+export async function deleteUserId() {
+  try {
+    await AsyncStorage.removeItem('@profileId')
+  } catch (e) {
+    console.log(e)
+  }
+}
